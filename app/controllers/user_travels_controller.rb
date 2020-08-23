@@ -7,7 +7,6 @@ class UserTravelsController < ApplicationController
         @flight = Flight.find(params[:flight_id])
         @user_travel.date = session[:doj]
         @user_travel.noofseat = params[:user_travels][:noofseat]
-        byebug
         if @user_travel.save && @flight.noofseat >= params[:user_travels][:noofseat].to_i
             @flight.noofseat = @flight.noofseat - @user_travel.noofseat
             @flight.save
