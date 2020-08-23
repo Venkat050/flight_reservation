@@ -1,0 +1,18 @@
+<h1> Fill Your Details </h1>
+
+<h3> Flight Information </h3>
+
+<p> Flight No. : <%= @flight.id %> </p>
+<p> From : <%= @flight.source %></p>
+<p> To: <%= @flight.destination %></p>
+<p> Price : <%= @flight.price %></p>
+<p> Reamining Seats : <%= @flight.noofseat %>
+<p> Date : <%= session[:doj].split('-').reverse().join('-') %></p>
+<%= form_with(scope: :user_travels, url: flight_path, local: true) do |f| %>
+<p> 
+    <%= hidden_field_tag(:flight_id, @flight.id) %>
+    <%= f.label  :noofseat %>
+    <%= f.number_field :noofseat, max: 10, min: 1 %>
+</p>
+<%= f.submit 'Book'%>
+<% end %>

@@ -1,0 +1,34 @@
+<h1> Search Flight </h1>
+
+<%= form_tag(root_path, :method => "get") do %>
+  From : <%= text_field_tag(:source, nil, :required => true)  %>
+  To :<%= text_field_tag(:destination, nil, :required => true) %>
+   <%= date_field_tag(:doj, nil, :required => true) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<br><br>
+
+<table>
+    <% if @flights.present? %>
+    <% @flights.each do |f|%>
+    <tr>
+    <tr>
+        <th>Flight_id</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>No of Seats</th>
+        <th>Price </th>
+    </tr>
+    <td><%= f.id %></td>
+    <td><%= f.source %></td>
+    <td><%= f.destination %></td>
+    <td><%= f.noofseat %></td>
+    <td><%= f.price %></td>
+    <td><%= link_to "<button>Book</button>".html_safe, flight_path(f)  %> </td>
+    </tr>
+
+    <% end %>
+    <% end %>
+</table>  
+
+<%= link_to "<button>LogOut</button>".html_safe, logout_path, method: :delete %>
