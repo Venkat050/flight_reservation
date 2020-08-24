@@ -1,18 +1,33 @@
-<h1> Fill Your Details </h1>
 
-<h3> Flight Information </h3>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  
+  <a class="navbar-brand" href="#">Fly Ally</a>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item" >
+      <%= link_to "<button class=\"btn btn-light btn-sm\">LogOut</button>".html_safe, logout_path, method: :delete %>
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  <h2>Check The Details</h2>
+  <ul class="list-group">
+    <li class="list-group-item">Flight No. : <%= @flight.id %></li>
+    <li class="list-group-item">From: <%= @flight.source %></li>
+    <li class="list-group-item">To: <%= @flight.destination %></li>
+    <li class="list-group-item">Reamining Seats : <%= @flight.noofseat %></li>
+    <li class="list-group-item">Date : <%= session[:doj].split('-').reverse().join('-') %></li>
+   <!-- <%= form_with(scope: :user_travels, url: flight_path, local: true) do |f| %>  
+    <li class="list-group-item">No Of Seat :  <%= f.number_field :noofseat, max: 10, min: 1 %></li>
+  </ul><br><br>
+  <%= hidden_field_tag(:flight_id, @flight.id) %>
+  <%= f.submit 'Book' %>
+  <% end %>
+</div>-->
 
-<p> Flight No. : <%= @flight.id %> </p>
-<p> From : <%= @flight.source %></p>
-<p> To: <%= @flight.destination %></p>
-<p> Price : <%= @flight.price %></p>
-<p> Reamining Seats : <%= @flight.noofseat %>
-<p> Date : <%= session[:doj].split('-').reverse().join('-') %></p>
-<%= form_with(scope: :user_travels, url: flight_path, local: true) do |f| %>
-<p> 
+<li class="list-group-item"> <%= form_with(scope: :user_travels, url: flight_path, local: true) do |f| %>
     <%= hidden_field_tag(:flight_id, @flight.id) %>
     <%= f.label  :noofseat %>
-    <%= f.number_field :noofseat, max: 10, min: 1 %>
-</p>
-<%= f.submit 'Book'%>
-<% end %>
+    <%= f.number_field :noofseat, required: true %>
+<%= f.submit 'Book', class: 'btn btn-primary btn-sm'%>
+<% end %></li>
+</ul></div>

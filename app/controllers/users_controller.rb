@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-
+    def index
+        redirect_to signup_path
+    end
     def new
         if session[:user_id] != nil
             redirect_to root_path

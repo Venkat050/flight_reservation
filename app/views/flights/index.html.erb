@@ -1,34 +1,88 @@
-<h1> Search Flight </h1>
+<style>
+input[type=text], input[type=date] {
+    background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 3px;
+    width: 20%;
+    border: 2px solid #cccccc;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+  }
+  
+  input[type=text]:focus , input[type=date]:focus{
+    background-color: #fff;
+    border-bottom: 2px solid #5fbae9;
+  }
+  
+  input[type=text]:placeholder {
+    color: #cccccc;
+  }
 
-<%= form_tag(root_path, :method => "get") do %>
-  From : <%= text_field_tag(:source, nil, :required => true)  %>
-  To :<%= text_field_tag(:destination, nil, :required => true) %>
+  .labels1 {
+    display: inline-block;
+    font-size: 20px;
+    font-style: bold;
+  }
+ 
+</style>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">Fly Ally</a>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item" >
+      <%= link_to "<button class=\"btn btn-light btn-sm\">LogOut</button>".html_safe, logout_path, method: :delete %>
+    </li>
+  </ul>
+</nav>
+<div class="contianer">
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container" style="text-align: center;" >
+    <%= form_tag(root_path, :method => "get") do %>
+  <div class="labels1">From :</div> <%= text_field_tag(:source, nil, :required => true)  %>
+  <div class="labels1">To :</div><%= text_field_tag(:destination, nil, :required => true) %>
    <%= date_field_tag(:doj, nil, :required => true) %>
-  <%= submit_tag("Search") %>
+  <%= submit_tag("Search", class: "btn btn-primary btn-lg") %>
 <% end %>
 <br><br>
+  </div>
+</div>
 
-<table>
+
+
+<table class="table table-hover">
     <% if @flights.present? %>
-    <% @flights.each do |f|%>
-    <tr>
     <tr>
         <th>Flight_id</th>
         <th>Source</th>
         <th>Destination</th>
         <th>No of Seats</th>
         <th>Price </th>
+        <th></th>
     </tr>
+    <% @flights.each do |f|%>
+    <tr>
+    
     <td><%= f.id %></td>
     <td><%= f.source %></td>
     <td><%= f.destination %></td>
     <td><%= f.noofseat %></td>
     <td><%= f.price %></td>
-    <td><%= link_to "<button>Book</button>".html_safe, flight_path(f)  %> </td>
+    <td><%= link_to "<button class=\"btn btn-primary\">Book</button>".html_safe, flight_path(f)  %> </td>
     </tr>
 
     <% end %>
     <% end %>
 </table>  
-
-<%= link_to "<button>LogOut</button>".html_safe, logout_path, method: :delete %>
+</div>

@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  
+  <a class="navbar-brand" href="#">Fly Ally</a>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item" >
+      <%= link_to "<button class=\"btn btn-light btn-sm\">LogOut</button>".html_safe, logout_path, method: :delete %>
+    </li>
+  </ul>
+</nav>
+<h3 style="text-align:center; color: green;">Booked Successfully !! </h3>
+
+<table class="table table-bordered">
+    <tr>
+        <td> Flight No </td>
+        <td> <%= @user_travel.flight_id %></td>
+    </tr>
+    <tr>
+        <td> Departure City </td>
+        <td> <%= @flight.source %></td>
+    </tr>
+    <tr>
+        <td> Arrival City </td>
+        <td> <%= @flight.destination %></td>
+    </tr>
+    <tr>
+        <td> No Of Passengers </td>
+        <td> <%= @user_travel.noofseat %></td>
+    </tr>
+    <tr>
+        <td> Date </td>
+        <td><%= session[:doj].split('-').reverse().join('-') %>
+    </tr>
+    <tr>
+        <td> Status </td>
+        <td> Confirmed </td>
+    </tr>
+</table>
+
+<div style="text-align:center"><%= link_to "<button class=\"btn btn-primary btn-lg\">Continue</button>".html_safe, root_path  %> </div>

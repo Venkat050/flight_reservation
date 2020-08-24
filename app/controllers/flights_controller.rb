@@ -18,6 +18,6 @@ class FlightsController < ApplicationController
     def booking
         @id = params[:id]
         @flight = Flight.find(@id)
-
+        
     end
 end

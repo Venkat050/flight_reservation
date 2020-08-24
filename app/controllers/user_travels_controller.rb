@@ -1,4 +1,7 @@
 class UserTravelsController < ApplicationController
+    def show
+        @flight = Flight.find(@user_travel.flight_id)
+    end
 
     def create
         @user_travel = UserTravel.new
@@ -10,7 +13,7 @@ class UserTravelsController < ApplicationController
         if @user_travel.save && @flight.noofseat >= params[:user_travels][:noofseat].to_i
             @flight.noofseat = @flight.noofseat - @user_travel.noofseat
             @flight.save
-            render plain: "Booked Successfully"
+            render 'show'
         else
             redirect_to flight_path(params[:flight_id])
         end
