@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_08_23_173808) do
   create_table "flights", force: :cascade do |t|
     t.string "source"
     t.string "destination"
-    t.integer "noofseat"
+    t.time "time"
     t.integer "price"
   end
 
