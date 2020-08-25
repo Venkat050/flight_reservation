@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'flights#index'
 
+  post '/', to: 'flights#index'
   get '/flights/:id', to: 'flights#booking', as: 'flight'
   post '/flights/:id', to: 'user_travels#create'
 

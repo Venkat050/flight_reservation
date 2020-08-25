@@ -10,9 +10,7 @@ class UserTravelsController < ApplicationController
         @flight = Flight.find(params[:flight_id])
         @user_travel.date = session[:doj]
         @user_travel.noofseat = params[:user_travels][:noofseat]
-        if @user_travel.save && @flight.noofseat >= params[:user_travels][:noofseat].to_i
-            @flight.noofseat = @flight.noofseat - @user_travel.noofseat
-            @flight.save
+        if @user_travel.save
             render 'show'
         else
             redirect_to flight_path(params[:flight_id])
